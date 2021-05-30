@@ -6,8 +6,10 @@ from .models import Allergy
 # Create your views here.
 def index(request):
 	allergy_list = Allergy.objects.all()
-	output = ', '.join([a.name for a in allergy_list])
-	return HttpResponse(output)
+	context = {
+		'allergy_list': allergy_list
+	}
+	return render(request, 'alg/index.html', context)
 
 def detail(request, allergy_id):
 	a = Allergy.objects.get(id=allergy_id)
