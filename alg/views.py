@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from .models import Allergy
@@ -12,5 +12,5 @@ def index(request):
 	return render(request, 'alg/index.html', context)
 
 def detail(request, allergy_id):
-	a = Allergy.objects.get(id=allergy_id)
+	a = get_object_or_404(Allergy, id=allergy_id)
 	return HttpResponse(str(a))
