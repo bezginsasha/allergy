@@ -17,6 +17,11 @@ def add_allergy(request):
 	a.save()
 	return HttpResponseRedirect(reverse('alg:index'))
 
+def del_allergy(request):
+	a = get_object_or_404(Allergy, id=request.POST['id'])
+	a.delete()
+	return HttpResponseRedirect(reverse('alg:index'))
+
 def detail(request, allergy_id):
 	a = get_object_or_404(Allergy, id=allergy_id)
 	return HttpResponse(str(a))
