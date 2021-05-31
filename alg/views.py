@@ -6,7 +6,7 @@ from .models import Allergy
 
 # Create your views here.
 def index(request):
-	allergy_list = Allergy.objects.all()
+	allergy_list = Allergy.objects.order_by('-anger')
 	context = {
 		'allergy_list': allergy_list
 	}
