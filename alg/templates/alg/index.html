@@ -1,3 +1,8 @@
 {% for allergy in allergy_list %}
-	<p><a href="{% url 'alg:detail' allergy.id %}">{{ allergy.name }}</a></p>
+	<form action="{% url 'alg:enrage' %}" method="post">
+		{% csrf_token %}
+		<span>name: {{ allergy.name }} with anger: {{ allergy.anger }}</span>
+		<input type="hidden" name="id" value="{{ allergy.id }}">
+		<input type="submit" value="enrage">
+	</form>
 {% endfor %}
