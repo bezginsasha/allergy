@@ -1,18 +1,31 @@
+<style>
+	form {
+		margin: 1px;
+	}
+</style>
 <form action="{% url 'alg:add_allergy' %}" method="post">
 	{% csrf_token %}
 	<input type="text" name="name">
 	<input type="submit" value="add">
 </form>
-{% for allergy in allergy_list %}
-	<form action="{% url 'alg:enrage' %}" method="post">
-		{% csrf_token %}
-		<span>name: {{ allergy.name }} with anger: {{ allergy.anger }}</span>
-		<input type="hidden" name="id" value="{{ allergy.id }}">
-		<input type="submit" value="enrage">
-	</form>
-	<form action="{% url 'alg:del_allergy' %}" method="post">
-		{% csrf_token %}
-		<input type="hidden" name="id" value="{{ allergy.id }}">
-		<input type="submit" value="delete">
-	</form>
-{% endfor %}
+<table>
+	{% for allergy in allergy_list %}
+		<tr>
+			<td>name: {{ allergy.name }} with anger: {{ allergy.anger }}</td>
+			<td>
+				<form action="{% url 'alg:enrage' %}" method="post">
+					{% csrf_token %}
+					<input type="hidden" name="id" value="{{ allergy.id }}">
+					<input type="submit" value="enrage">
+				</form>
+			</td>
+			<td>
+				<form action="{% url 'alg:del_allergy' %}" method="post">
+					{% csrf_token %}
+					<input type="hidden" name="id" value="{{ allergy.id }}">
+					<input type="submit" value="delete">
+				</form>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
