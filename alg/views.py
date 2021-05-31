@@ -12,6 +12,11 @@ def index(request):
 	}
 	return render(request, 'alg/index.html', context)
 
+def add_allergy(request):
+	a = Allergy(name = request.POST['name'])
+	a.save()
+	return HttpResponseRedirect(reverse('alg:index'))
+
 def detail(request, allergy_id):
 	a = get_object_or_404(Allergy, id=allergy_id)
 	return HttpResponse(str(a))
