@@ -10,4 +10,9 @@
 		<input type="hidden" name="id" value="{{ allergy.id }}">
 		<input type="submit" value="enrage">
 	</form>
+	<form action="{% url 'alg:del_allergy' %}" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="id" value="{{ allergy.id }}">
+		<input type="submit" value="delete">
+	</form>
 {% endfor %}
