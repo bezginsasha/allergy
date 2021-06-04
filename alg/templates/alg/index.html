@@ -1,10 +1,6 @@
 {% load static %}
 
-<style>
-	form {
-		margin: 1px;
-	}
-</style>
+<link rel="stylesheet" href="{% static 'alg/style.css' %}">
 <form action="{% url 'alg:add_allergy' %}" method="post">
 	{% csrf_token %}
 	<input type="text" name="name">
