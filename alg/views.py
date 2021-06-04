@@ -13,8 +13,10 @@ def index(request):
 	return render(request, 'alg/index.html', context)
 
 def add_allergy(request):
-	a = Allergy(name = request.POST['name'])
-	a.save()
+	name = request.POST['name']
+	if len(name) > 0:
+		a = Allergy(name = name)
+		a.save()
 	return HttpResponseRedirect(reverse('alg:index'))
 
 def del_allergy(request):
