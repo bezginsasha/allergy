@@ -14,24 +14,25 @@
 	<div class="list-container">
 		{% for allergy in allergy_list %}
 			<div class="row">
-				<span class="element">{{ allergy.name }}</span>
+				<div class="element" contenteditable="true" oninput="duplicateInput({{ allergy.id }})" id="name{{ allergy.id }}">{{ allergy.name }}</div>
 				<div class="element">
-					<form action="{% url 'alg:enrage' %}" method="post" class="element">
+					<form action="{% url 'alg:enrage' %}" method="post" class="element" id="enrage{{ allergy.id }}">
 						{% csrf_token %}
 						<input type="hidden" name="id" value="{{ allergy.id }}">
 						<input type="submit" value="enrage">
 					</form>
-					<form action="{% url 'alg:del_allergy' %}" method="post" class="element">
+					<form action="{% url 'alg:del_allergy' %}" method="post" class="element default-hide" id="delete{{ allergy.id }}">
 						{% csrf_token %}
 						<input type="hidden" name="id" value="{{ allergy.id }}">
 						<input type="submit" value="delete">
 					</form>
-					<form action="{% url 'alg:edit_allergy' %}" method="post" class="element">
+					<form action="{% url 'alg:edit_allergy' %}" method="post" class="element default-hide" id="edit{{ allergy.id }}">
 						{% csrf_token %}
 						<input type="hidden" name="id" value="{{ allergy.id }}">
-						<input type="hidden" name="name">
+						<input type="hidden" name="name" id="hiddenName{{ allergy.id }}">
 						<input type="submit" value="edit">
 					</form>
+					<button class="element more-button" onclick="show({{ allergy.id }})" id="more{{ allergy.id }}"></button>
 				</div>
 			</div>
 		{% endfor %}

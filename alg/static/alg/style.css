@@ -15,19 +15,11 @@ input:focus, button:focus {
 	border: 1px #7d7d7d solid;
 	outline: none;
 }
-input[type="submit"], button {
+input[type="submit"], input[type="button"], button {
 	background-color: #e6e6e6;
 }
-input[type="submit"]:hover, button:hover {
+input[type="submit"]:hover, input[type="button"]:hover, button:hover {
 	background-color: #cecece;
-}
-
-button {
-	padding-left: 7px;
-	padding-right: 2px;
-}
-button:after {
-	content: '\2807';
 }
 
 
@@ -54,4 +46,16 @@ button:after {
 .element {
 	display: inline-block;
 	margin: 0;
+}
+
+.more-button {
+	padding-left: 7px;
+	padding-right: 2px;
+}
+.more-button:after {
+	content: '\2807';
+}
+
+.default-hide {
+	display: none;
 }
