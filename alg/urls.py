@@ -10,4 +10,5 @@ urlpatterns = [
 	path('enrage', views.enrage, name='enrage'),
 	path('add_allergy', views.add_allergy, name='add_allergy'),
 	path('del_allergy', views.del_allergy, name='del_allergy'),
+	path('edit_allergy', views.edit_allergy, name='edit_allergy'),
 ]
