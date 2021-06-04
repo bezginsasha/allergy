@@ -2,24 +2,32 @@ body {
 	background-color: #e9ebf2;
 }
 
-body, input, submit {
+body, input, submit, button {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 }
 
-input {
+input, button {
 	border: 1px #7d7d7d solid;
 	border-radius: 4px;
 }
-input:focus {
+input:focus, button:focus {
 	border: 1px #7d7d7d solid;
 	outline: none;
 }
-input[type="submit"] {
+input[type="submit"], button {
 	background-color: #e6e6e6;
 }
-input[type="submit"]:hover {
+input[type="submit"]:hover, button:hover {
 	background-color: #cecece;
+}
+
+button {
+	padding-left: 7px;
+	padding-right: 2px;
+}
+button:after {
+	content: '\2807';
 }
 
 
