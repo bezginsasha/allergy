@@ -26,7 +26,12 @@
 						<input type="hidden" name="id" value="{{ allergy.id }}">
 						<input type="submit" value="delete">
 					</form>
-					<button class="element"></button>
+					<form action="{% url 'alg:edit_allergy' %}" method="post" class="element">
+						{% csrf_token %}
+						<input type="hidden" name="id" value="{{ allergy.id }}">
+						<input type="hidden" name="name">
+						<input type="submit" value="edit">
+					</form>
 				</div>
 			</div>
 		{% endfor %}
