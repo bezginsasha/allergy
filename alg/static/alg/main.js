@@ -35,3 +35,10 @@ function show(allergyId) {
 	showEditButtons(allergyId);
 	lastId = allergyId;
 }
+
+function duplicateInput(allergyId) {
+	var name = getElementById('name' + allergyId);
+	var hiddenName = getElementById('hiddenName' + allergyId);
+
+	hiddenName.value = name.innerText;
+}

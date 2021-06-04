@@ -22,6 +22,10 @@ input[type="submit"]:hover, input[type="button"]:hover, button:hover {
 	background-color: #cecece;
 }
 
+div:focus {
+	outline: none;
+}
+
 
 .container {
 	width: 1000px;
