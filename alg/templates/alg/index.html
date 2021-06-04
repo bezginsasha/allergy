@@ -1,31 +1,35 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'alg/style.css' %}">
-<form action="{% url 'alg:add_allergy' %}" method="post">
-	{% csrf_token %}
-	<input type="text" name="name">
-	<input type="submit" value="add">
-</form>
-<table>
-	{% for allergy in allergy_list %}
-		<tr>
-			<td>name: {{ allergy.name }} with anger: {{ allergy.anger }}</td>
-			<td>
-				<form action="{% url 'alg:enrage' %}" method="post">
-					{% csrf_token %}
-					<input type="hidden" name="id" value="{{ allergy.id }}">
-					<input type="submit" value="enrage">
-				</form>
-			</td>
-			<td>
-				<form action="{% url 'alg:del_allergy' %}" method="post">
-					{% csrf_token %}
-					<input type="hidden" name="id" value="{{ allergy.id }}">
-					<input type="submit" value="delete">
-				</form>
-			</td>
-		</tr>
-	{% endfor %}
-</table>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+<div class="container">
+	<form action="{% url 'alg:add_allergy' %}" method="post">
+		{% csrf_token %}
+		<input type="text" name="name">
+		<input type="submit" value="add">
+	</form>
+	<div class="list-container">
+		{% for allergy in allergy_list %}
+			<div class="row">
+				<span class="element">{{ allergy.name }}</span>
+				<div class="element">
+					<form action="{% url 'alg:enrage' %}" method="post" class="element">
+						{% csrf_token %}
+						<input type="hidden" name="id" value="{{ allergy.id }}">
+						<input type="submit" value="enrage">
+					</form>
+					<form action="{% url 'alg:del_allergy' %}" method="post" class="element">
+						{% csrf_token %}
+						<input type="hidden" name="id" value="{{ allergy.id }}">
+						<input type="submit" value="delete">
+					</form>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
 
 <script src="{% static 'alg/main.js' %}"></script>
