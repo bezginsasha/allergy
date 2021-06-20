@@ -102,6 +102,6 @@ function uploadFile(file) {
 		headers,
 		body: formData,
 	})
-	.then(() => { console.log('ok') })
+	.then(() => { location.reload() })
 	.catch(() => { console.log('not ok') })
 }
