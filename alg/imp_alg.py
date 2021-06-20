@@ -1,5 +1,6 @@
 import re
 import json
+from xml.dom import minidom
 
 def handle_uploaded_file(f):
 	if not get_extension(f.name) in ['json', 'xml', 'xlsx']:
@@ -21,3 +22,16 @@ def handle_json(file_name):
 	file = open(file_name, 'r')
 	arr = json.loads(file.read())
 	return arr
+
+def handle_xml(file_name):
+	file = open(file_name, 'r')
+	alg_list = []
+
+	doc = minidom.parse(file_name)
+	alg_elements = doc.getElementsByTagName('alg')
+	for alg_element in alg_elements:
+		name = alg_element.getAttribute('name')
+		anger = alg_element.getAttribute('anger')
+		alg_list.append({'name': name, 'anger': anger})
+
+	return alg_list
