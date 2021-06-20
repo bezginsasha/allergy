@@ -70,6 +70,7 @@ div:focus {
   padding: 20px;
   border: 1px #bfbfbf solid;
   text-align: center;
+  user-select: none;
 }
 #drop-area.highlight {
   border-color: black;
