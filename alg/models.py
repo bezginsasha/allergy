@@ -16,5 +16,11 @@ class Allergy(models.Model):
 		except IntegrityError as e:
 			pass
 
+	@staticmethod
+	def save_list(alg_list):
+		for alg in alg_list:
+			new_alg = Allergy(name = alg['name'], anger = alg['anger'])
+			new_alg.save_with_unique_handle()
+
 	def __str__(self):
 		return "allergy " + self.name + " with anger: " + str(self.anger)
