@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .imp_alg import handle_uploaded_file, get_extension, handle_json, handle_xml
+from .imp_alg import handle_uploaded_file, get_extension, handle_json, handle_xml, handle_xlsx
 
 from .models import Allergy
 
@@ -50,9 +50,15 @@ def imp(request):
 	if file_name == None:
 		return HttpResponse('not compatible format')
 	file_extension = get_extension(file_name)
+
 	if file_extension == 'json':
 		alg_list = handle_json(file_name)
 	elif file_extension == 'xml':
 		alg_list = handle_xml(file_name)
+	elif file_extension == 'xlsx':
+		alg_list = handle_xlsx(file_name)
+	else:
+		return HttpResponse('not compatible format')
+
 	Allergy.save_list(alg_list)
 	return HttpResponse('ok')
