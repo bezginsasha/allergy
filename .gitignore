@@ -1,2 +1,4 @@
 __pycache__/
+uploaded_files/
+.idea/
 db.sqlite3
