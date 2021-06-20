@@ -42,3 +42,66 @@ function duplicateInput(allergyId) {
 
 	hiddenName.value = name.innerText;
 }
+
+// Handle of drag and drop
+
+var dropArea = document.querySelector('#drop-area');
+
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, preventDefaults, false)
+})
+
+function preventDefaults (e) {
+  e.preventDefault()
+  e.stopPropagation()
+}
+
+['dragenter', 'dragover'].forEach(eventName => {
+  dropArea.addEventListener(eventName, highlight, false)
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, unHighlight, false)
+});
+
+dropArea.addEventListener('drop', handleDrop, false);
+
+function highlight() {
+	dropArea.classList.add('highlight');
+}
+
+function unHighlight() {
+	dropArea.classList.remove('highlight');
+}
+
+function handleDrop(e) {
+	var dt = e.dataTransfer;
+	var files = dt.files
+
+	handleFiles(files);
+}
+
+function handleFiles(files) {
+	uploadFile(files.item(0));
+}
+
+function uploadFile(file) {
+	var url = 'http://localhost:8000/imp';
+	var formData = new FormData();
+
+	var csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+
+	var headers = new Headers({
+		'X-CSRFToken': csrfToken,
+	});
+
+	formData.append('file', file);
+
+	fetch(url, {
+		method: 'POST',
+		headers,
+		body: formData,
+	})
+	.then(() => { console.log('ok') })
+	.catch(() => { console.log('not ok') })
+}

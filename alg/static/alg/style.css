@@ -63,3 +63,14 @@ div:focus {
 .default-hide {
 	display: none;
 }
+
+#drop-area {
+  width: 410px;
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px #bfbfbf solid;
+  text-align: center;
+}
+#drop-area.highlight {
+  border-color: black;
+}
