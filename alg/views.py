@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from .imp_alg import handle_uploaded_file, get_extension, handle_json
 
 from .models import Allergy
 
@@ -42,3 +43,13 @@ def enrage(request):
 	a.anger += 1
 	a.save()
 	return HttpResponseRedirect(reverse('alg:index'))
+
+def imp(request):
+	print(request.FILES['file'].name)
+	file_name = handle_uploaded_file(request.FILES['file'])
+	if file_name == None:
+		return HttpResponse('not compatible format')
+	if get_extension(file_name) == 'json':
+		alg_list = handle_json(file_name)
+	Allergy.save_list(alg_list)
+	return HttpResponse('ok')
