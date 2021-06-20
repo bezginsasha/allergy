@@ -29,9 +29,9 @@ def del_allergy(request):
 def edit_allergy(request):
 	a = get_object_or_404(Allergy, id=request.POST['id'])
 	name = request.POST['name']
-	if len(name) > 0:
-		a.name = name
-		a.save()
+
+	a.name = name
+	a.save_with_unique_handle()
 	return HttpResponseRedirect(reverse('alg:index'))
 
 def detail(request, allergy_id):
