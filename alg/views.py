@@ -14,9 +14,10 @@ def index(request):
 
 def add_allergy(request):
 	name = request.POST['name']
-	if len(name) > 0:
-		a = Allergy(name = name)
-		a.save()
+
+	a = Allergy(name = name)
+	a.save_with_unique_handle()
+
 	return HttpResponseRedirect(reverse('alg:index'))
 
 def del_allergy(request):
