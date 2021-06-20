@@ -1,6 +1,7 @@
 import re
 import json
 from xml.dom import minidom
+import pandas
 
 def handle_uploaded_file(f):
 	if not get_extension(f.name) in ['json', 'xml', 'xlsx']:
@@ -32,6 +33,17 @@ def handle_xml(file_name):
 	for alg_element in alg_elements:
 		name = alg_element.getAttribute('name')
 		anger = alg_element.getAttribute('anger')
+		alg_list.append({'name': name, 'anger': anger})
+
+	return alg_list
+
+def handle_xlsx(file_name):
+	table = pandas.read_excel(file_name)
+	table_dict = table.to_dict()
+	alg_list = []
+	for i in table_dict['name']:
+		name = table_dict['name'][i]
+		anger = table_dict['anger'][i]
 		alg_list.append({'name': name, 'anger': anger})
 
 	return alg_list
