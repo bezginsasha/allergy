@@ -64,6 +64,31 @@ div:focus {
 	display: none;
 }
 
+.user-form {
+	float: right;
+}
+.user-form > form > * {
+	float: right;
+}
+
+.triangle {
+	color: #989898;
+	user-select: none;
+}
+.triangle:hover {
+	color: black;
+}
+
+/*.triangle {
+	display: inline-block;
+	margin-top: 10px;
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 12px solid #f00;
+}*/
+
 #drop-area {
   width: 410px;
   margin-top: 30px;

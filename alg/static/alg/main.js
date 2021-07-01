@@ -43,6 +43,16 @@ function duplicateInput(allergyId) {
 	hiddenName.value = name.innerText;
 }
 
+// Handle user-form
+
+// var originUsername = document.querySelector('#originUsername');
+// var originPassword = document.querySelector('#originPassword');
+// var copyUsername = document.querySelector('#copyUsername');
+// var copyPassword = document.querySelector('#copyPassword');
+
+// originUsername.addEventListener('input', () => copyUsername.value = originUsername.value, false)
+// originPassword.addEventListener('input', () => copyPassword.value = originPassword.value, false)
+
 // Handle of drag and drop
 
 var dropArea = document.querySelector('#drop-area');

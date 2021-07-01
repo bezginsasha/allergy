@@ -2,14 +2,18 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .imp_alg import handle_uploaded_file, get_extension, handle_json, handle_xml, handle_xlsx
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Allergy
 
-# Create your views here.
+# allergy views
 def index(request):
 	allergy_list = Allergy.objects.order_by('-anger')
+	user = request.user
 	context = {
-		'allergy_list': allergy_list
+		'allergy_list': allergy_list,
+		'username': user.username
 	}
 	return render(request, 'alg/index.html', context)
 
@@ -44,6 +48,30 @@ def enrage(request):
 	a.save()
 	return HttpResponseRedirect(reverse('alg:index'))
 
+
+# user views
+def sign_up(request):
+	username = request.POST['username']
+	password = request.POST['password']
+
+	user = User.objects.create_user(username=username, password=password)
+	user.save()
+	return HttpResponseRedirect(reverse('alg:index'))
+
+def sign_in(request):
+	username = request.POST['username']
+	password = request.POST['password']
+	user = authenticate(request, username=username, password=password)
+	if user is not None:
+		login(request, user)
+	return HttpResponseRedirect(reverse('alg:index'))
+
+def log_out(request):
+	logout(request)
+	return HttpResponseRedirect(reverse('alg:index'))
+
+
+# import view
 def imp(request):
 	print(request.FILES['file'].name)
 	file_name = handle_uploaded_file(request.FILES['file'])

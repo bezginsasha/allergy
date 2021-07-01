@@ -5,13 +5,42 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 
+
+
 <div class="container">
+	<div class="user-form">
+		{# <span>mrtedn</span> #}
+		{# <span class="triangle">▼</span> #}
+		<input type="button" value="sign in">
+		<input type="button" value="sign up">
+
+		<form action="{% url 'alg:sign_in' %}" method="post">
+			{% csrf_token %}
+			<input type="text" name="username" placeholder="username"><br>
+			<input type="text" name="password" placeholder="password"><br>
+			<input type="submit" value="sign in">
+		</form>
+
+		<form action="{% url 'alg:sign_up' %}" method="post">
+			{% csrf_token %}
+			<input type="text" name="username" placeholder="username"><br>
+			<input type="text" name="password" placeholder="password"><br>
+			<input type="submit" value="sign up">
+		</form>
+
+		<form action="{% url 'alg:log_out' %}" method="post">
+			{% csrf_token %}
+			<input type="submit" value="log out">
+		</form>
+	</div>
+
 	<form action="{% url 'alg:add_allergy' %}" method="post">
 		{% csrf_token %}
 		<input type="text" name="name">
 		<input type="submit" value="add">
 	</form>
 	<div class="list-container">
+		{{ username }}
 		{% for allergy in allergy_list %}
 			<div class="row">
 				<div class="element" contenteditable="true" oninput="duplicateInput({{ allergy.id }})" id="name{{ allergy.id }}">{{ allergy.name }}</div>
